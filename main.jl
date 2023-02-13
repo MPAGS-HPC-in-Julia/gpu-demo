@@ -5,9 +5,9 @@ CUDA.versioninfo()
 N = 2048
 a = rand(Float32, N);
 b = rand(Float32, N);
-c = similar(a)
+c = similar(a);
 
-c .= a .+ b
+c .= a .+ b;
 
 # Copy arrays to the GPU
 a_gpu = cu(a)
