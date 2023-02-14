@@ -19,6 +19,18 @@ C_gpu = similar(A_gpu);
 
 @benchmark mul!($C_gpu, $A_gpu, $B_gpu)
 
+
+
+
+
+
+
+
+
+
+
+
+
 function benchmarks(ns)
     function bench_cpu(n)
         a = rand(Float32, n, n)
