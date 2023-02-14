@@ -22,4 +22,3 @@ c_from_gpu = Array(c_gpu)
 
 # Check whether they are equal
 isapprox(c, c_from_gpu)
-

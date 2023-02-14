@@ -22,6 +22,15 @@ xs = walks(N, T);
 avg_final_pos = reduce(+, xs) / length(xs)
 
 
+
+
+
+
+
+
+
+
+
 function walks_gpu(N, T)
     walks = CuArray{Int32}(undef, N);
     walks .= random_walk.(T)

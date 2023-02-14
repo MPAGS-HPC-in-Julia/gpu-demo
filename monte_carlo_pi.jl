@@ -1,4 +1,5 @@
 using CUDA
+using BenchmarkTools
 
 function throw_dart()
     x = rand() * 2 - 1
@@ -9,6 +10,29 @@ function est_pi(N)
     hits = mapreduce(_->throw_dart(), +, 1:N);
     return 4 * hits / N
 end
+
+
+@benchmark est_pi($(2^20))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function est_pi_gpu(N)
     darts = CuArray{Bool}(undef, N)
     darts .= (_->throw_dart()).(nothing)
@@ -17,6 +41,4 @@ function est_pi_gpu(N)
     return est
 end
 
-using BenchmarkTools
-@benchmark est_pi($(2^20))
 @benchmark CUDA.@sync est_pi_gpu($(2^20))
