@@ -1,6 +1,7 @@
 using CUDA
 # Check CUDA is compatible
 CUDA.versioninfo()
+@assert CUDA.functional()
 
 N = 2048
 a = rand(Float32, N);
