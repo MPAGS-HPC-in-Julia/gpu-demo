@@ -56,3 +56,4 @@ function plot_results(results)
     plot!(plt; legend=:topleft)
     return plt
 end
+plot_results(results)
