@@ -31,6 +31,7 @@ C_gpu = similar(A_gpu);
 
 
 
+
 function benchmarks(ns)
     function bench_cpu(n)
         a = rand(Float32, n, n)
