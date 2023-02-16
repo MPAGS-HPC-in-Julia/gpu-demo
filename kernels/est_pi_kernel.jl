@@ -1,4 +1,5 @@
 using CUDA
+using BenchmarkTools
 
 function _est_pi_gpu!(totals)
     block_counts = CUDA.@cuStaticSharedMem(UInt16, 256)
@@ -30,8 +31,11 @@ function est_pi_gpu(n)
     blocks = cld(n, threads)
     total = CuArray{UInt32}([0])
     @cuda threads=threads blocks=blocks _est_pi_gpu!(total)
-
-    gpu_total = Array(total)[]
+    gpu_total = UInt32(0)
+    CUDA.@allowscalar begin
+        gpu_total = total[]
+    end
+    CUDA.unsafe_free!(total)
     return 4 * gpu_total / (threads * blocks)
 end
 
